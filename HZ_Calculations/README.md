@@ -8,6 +8,22 @@ The order of the structure is
 * **Star** - Structure array
   * **Designation** - Identifier of the star
     * **Data** - Includes data such as the name of the star, luminosity, and effective temperature
+
+
+## HZ_Dist.m
+`HZ_Dist(T_eff,L)`  
+T_eff = Effective stellar temperature \[K\]  
+L = Stellar luminousity \[L<sub>⊙</sub>\]  
+
+This function calculates the stellar habitable zone (HZ) boundaries using coefficients and expressions given from Kopparapu et al. (2014)[^1][^2] paper. 
+This function only calculates HZ distances relative to 1 Earth mass. 
+
+Outputs 1x4 double `dist` containing HZ distances in units of AU. 
+
+1. Recent Venus
+2. Runaway Greenhouse
+3. Maximum Greenhouse
+4. Early Mars
   
 ### Contact
 Blake Wittmayer & Manfred Cuntz  
