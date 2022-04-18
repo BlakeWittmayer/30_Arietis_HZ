@@ -1,3 +1,4 @@
+# 30 Arietis Habitable Zones
 This file plots the stellar habitable zone (HZ) boundaries for 30 Arietis using the expression given from Kopparapu et al. (2014) paper[^1][^2].
 This script may be utilized in the future to compare the HZ boundaries of two different stars.
 
