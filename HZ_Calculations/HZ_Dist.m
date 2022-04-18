@@ -1,5 +1,6 @@
+function [dist] = HZ_Dist(T_eff,L)
 % Import table of coefficients 
-coeff = readtable("Coeff.csv"); % table of coefficients
+coeff = readtable('Coeff.csv'); % table of coefficients
 coeff.Properties.VariableNames = {'Recent Venus' 'Runaway Greenhouse' 
     'Maximum Greenhouse' 'Early Mars'};
 coeff.Properties.RowNames = {'S_effSun' 'a' 'b' 'c' 'd'};
