@@ -8,7 +8,7 @@ close all
 m1 = 1.22;      % 30 Ari Ba
 m2 = 0.1403;    % 30 Ari Bb
 m3 = 0.50;      % 30 Ari C
-% Semi-major Axes [AU]
+% Semi-major Axes [au]
 a1 = 0.967;     % Primary Ba & companion Bb
 a2 = 21.9;      % Primary B & companion C
 
@@ -56,8 +56,8 @@ fprintf('M  (M*)\t\t%5.3f\n',M);
 end
 
 function outputA(a1,a2)
-fprintf('a1 (AU)\t\t%4.3f\n',a1);
-fprintf('a2 (AU)\t\t%4.1f\n',a2);
+fprintf('a1 (au)\t\t%4.3f\n',a1);
+fprintf('a2 (au)\t\t%4.1f\n',a2);
 end
 
 function outputC(a,crp,crr)
