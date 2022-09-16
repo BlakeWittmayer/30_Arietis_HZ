@@ -12,14 +12,14 @@ cuntz@uta.edu
 ## Description of values 
 The following values are inputted into the program. 
 - **m1, m2, m3**:  Masses of the 3 different components, with m1 and m2 being close companions and m3 being a distant companion. It is assumed that m1 is significantly greater than the other two bodies. Units are in values of solar masses.
-- **a1, a2**: Semi-major axes of m2 and m3 respectively. Units are in values of astronomical units (AU). 
+- **a1, a2**: Semi-major axes of m2 and m3 respectively. Units are in values of astronomical units (au). 
 
 The following values are used for calcualations and output data 
 - **M**:  Sum of the masses m1 and m2. Units are in values of solar masses.
 - **_a_**:  Ratio between a1 and a2. Unitless.
 - **_a_ crp**:  Limiting factor of corotating systems (prograde). Unitless.
 - **_a_ crr**:  Limiting factor of counterrotating systems (retrograde). Unitless.
-- **rH1, rH2**: Hill radius of 30 Ari Bb and C, respectively. Units are in values of astronomical units (AU).
+- **rH1, rH2**: Hill radius of 30 Ari Bb and C, respectively. Units are in values of astronomical units (au).
 
 ## Example of output
 ```
@@ -30,15 +30,15 @@ m1 (M*)		1.220
 m2 (M*)		0.140
 m3 (M*)		0.500
 M  (M*)		1.360
-a1 (AU)		0.967
-a2 (AU)		21.9
+a1 (au)		0.967
+a2 (au)		21.9
 -------------------
 Stellar Components
 α		0.0442
 α_crp		0.2113
 α_crr		0.2242
-Bb rH (AU)	0.3261
-C rH (AU)	10.8772
+Bb rH (au)	0.3261
+C rH (au)	10.8772
 
 RESULT:
 α <= α_crr
