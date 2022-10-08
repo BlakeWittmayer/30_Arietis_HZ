@@ -11,12 +11,16 @@ function eqn = Ypoly(Star1,Star2,s_l,a,n)
     A_0 = a^(4) - a^(2)*s_l^(2)*(Lp_1l+Lp_2l);
 
     m = y.^(3)-A_2.*y.^(2)-A_0.*y+(4*A_2.*A_0-A_1.^(2)) == 0;
-    eqn = zeros(1,length(m));
-    for k = 1:length(m)
+    eqn = zeros(1,n);
+    for k = 1:n
+%         if k == 1
+%             eqn(1,k) = NaN;
+%         else
         c = vpasolve(m(k));
         eqn(1,k) = double(c(1));
         % eqn(2,k) = double(c(2));
         % eqn(3,k) = double(c(3));
+%         end
     end
     clear y
 end
