@@ -30,5 +30,5 @@ E = sqrt(s_l^(2)*(Lp_1l+Lp_2l)-4*a*s_l^(2)*(Lp_1l-Lp_2l)*C.^(-1).*cos(phi)-2*a^(
 
 z(1,:) = real(-C./2 - D./2);
 z(2,:) = real(C./2 + E./2);
-
+z(:,1) = NaN;
 end
