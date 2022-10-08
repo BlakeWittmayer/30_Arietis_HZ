@@ -35,13 +35,14 @@ z_in = z_i(Star1,Star2,l_in,a,n);
 z_out = z_i(Star1,Star2,l_out,a,n);
 
 % Generate plot
-polarplot(phi,d_in);
+polarplot(phi,d_in,'--r');
 hold on
-polarplot(phi,-d_in);
-polarplot(phi,d_out);
-polarplot(phi,-d_out);
-polarplot(phi,z_in);
-polarplot(phi,z_out);
+polarplot(phi,-d_in,'--r');
+% polarplot(phi,d_out,'--b');
+% polarplot(phi,-d_out,'--b');
+polarplot(phi,z_in,'-g');
+polarplot(phi,z_out,'-c');
+% plotRHZ(z_in,z_out,n);
 polarplot(pi(),a,'.','Color','#EDB120','MarkerSize',30);
 polarplot(0,a,'.','Color','#EDB120','MarkerSize',15);
 hold off
