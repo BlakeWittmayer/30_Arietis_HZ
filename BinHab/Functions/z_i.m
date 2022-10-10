@@ -1,6 +1,5 @@
 function z = z_i(Star1,Star2,s_l,a,n)
-phi = 0:pi()/n:pi()-pi()/n;
-theta = 0:pi()/n:2*pi()-pi()/n;
+phi = linspace(0,pi,n);
 clear Star1.Lp_il Star2.Lp_il
 
 Lp_1l = Lprime_il(Star1.L,s_l,Star1.T_eff);
@@ -30,5 +29,8 @@ E = sqrt(s_l^(2)*(Lp_1l+Lp_2l)-4*a*s_l^(2)*(Lp_1l-Lp_2l)*C.^(-1).*cos(phi)-2*a^(
 
 z(1,:) = real(-C./2 - D./2);
 z(2,:) = real(C./2 + E./2);
+% z(3,:) = real(C./2 -E./2);
+% z(4,:) = real(C./2 +E./2);
 z(:,1) = NaN;
+z(:,n) = NaN;
 end
