@@ -17,32 +17,21 @@ Star2.R = 0.196;
 Star2.L = 0.003;
 
 a_bin = 0.967; % Semi-major axis of binary
-n = 250; % Coefficient of precision
+n = 250; % Number of points
 
 % Ask user to pick boundaries
-[l_in,l_out] = inputHZB(2,7);
+[l_in,l_out] = inputHZB(2,6);
 
 % Calculations
-phi = 0:pi()/n:pi()-pi()/n;
+phi = linspace(0,pi,n);
 a = 0.5*a_bin;
-mu = Star2.M/(Star1.M+Star2.M);
 
 d_in = Ypoly(Star1,Star2,l_in,a,n);
-d_out = Ypoly(Star1,Star2,l_out,a,n);
+d_out = Ypoly(Star1,Star2,l_out,a,n); % Currently unused
 
-% z is the radiative habitable limit (RHL)
+% z is the radiative habitable zone (RHZ)
 z_in = z_i(Star1,Star2,l_in,a,n);
 z_out = z_i(Star1,Star2,l_out,a,n);
 
 % Generate plot
-polarplot(phi,d_in,'--r');
-hold on
-polarplot(phi,-d_in,'--r');
-% polarplot(phi,d_out,'--b');
-% polarplot(phi,-d_out,'--b');
-polarplot(phi,z_in,'-g');
-polarplot(phi,z_out,'-c');
-% plotRHZ(z_in,z_out,n);
-polarplot(pi(),a,'.','Color','#EDB120','MarkerSize',30);
-polarplot(0,a,'.','Color','#EDB120','MarkerSize',15);
-hold off
+genPlot(d_in,d_out,z_in,z_out,n,a);
