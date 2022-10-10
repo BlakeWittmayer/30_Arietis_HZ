@@ -2,6 +2,8 @@
 clear; 
 clc;
 close all
+addpath('functions');
+addpath('input');
 
 % Inputs
 Star1.M = 1.22;
