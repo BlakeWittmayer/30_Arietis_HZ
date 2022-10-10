@@ -7,8 +7,7 @@ Input data is assigned into the `Star` structure array.
 The order of the structure is
 
 * **Star** - Structure array
-  * **Designation** - Identifier of the star
-    * **Data** - Includes data such as the name of the star, luminosity, and effective temperature
+  * **Data** - Includes data such as the name of the star, luminosity, and effective temperature
 
 
 ## HZ_Dist.m
