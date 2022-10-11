@@ -7,5 +7,5 @@ elseif s_l>1
     b_z = 1.4286e-9;
 end
 T_star = T_eff - 5700;
-S_relil = (s_l/(s_l-a_z*T_star-b_z*(T_star^(2))))^2;
+S_relil = (s_l/(s_l-a_z*T_star-b_z*(T_star^(2))))^2;        % Equation (4)
 end
