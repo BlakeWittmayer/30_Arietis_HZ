@@ -18,7 +18,7 @@ a_bin = 0.967; % Semi-major axis of binary
 n = 250; % Number of points
 
 % Ask user to pick boundaries
-[l_in,l_out] = inputHZB(2,6);
+[l_in,l_out] = inputHZB();
 
 % Calculations
 phi = linspace(0,pi,n);

@@ -1,9 +1,9 @@
-function [l_in,l_out] = inputHZB(in,out)
-T = readtable('Table 2.csv'); % Habitability Limits for the Sun
+function [l_in,l_out] = inputHZB()
+T = readtable('Table 2.csv','VariableNamingRule','preserve'); % Habitability Limits for the Sun
 clc;
 disp(T);
 while true
-    % in = input("Choose an inner boundary:\n");
+    in = input("Choose an inner boundary:\n");
     if in == 4
         fprintf("Selected choice is not a boundary\n");
     elseif (in > 4 || in < 1)
@@ -14,7 +14,7 @@ while true
     end
 end
 while true
-    % out = input("Choose an outer boundary:\n");
+    out = input("Choose an outer boundary:\n");
     if out == 4
         fprintf("Selected choice is not a boundary\n");
     elseif (out > 7 || out < 4)

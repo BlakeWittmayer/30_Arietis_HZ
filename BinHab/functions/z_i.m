@@ -13,8 +13,9 @@ ahat_0 = 4*A_0*A_2-A_1.^2;                              % Equation (24a)
 ahat_1 = -4*A_0;                                        % Equation (24b)
 ahat_2 = -A_2;                                          % Equation (24c)
 
-Q = ahat_1/3-(ahat_2.^2)/9;                             % Equation (23a)
-R = -ahat_0/2+(ahat_1*ahat_2)/6-(ahat_2.^3)/27;         % Equation (23b)
+Q = ahat_1./3-(ahat_2.^2)/9;                            % Equation (23a)
+R = -ahat_0./2+(ahat_1.* ...
+    ahat_2)./6-(ahat_2.^3)/27;                          % Equation (23b)
 
 D_3 = Q.^3 + R.^2;                                      % Equation (22c)
 
