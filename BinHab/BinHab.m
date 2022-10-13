@@ -16,6 +16,7 @@ Star2.L = 0.003;
 
 a_bin = 0.967; % Semi-major axis of binary
 n = 180; % Number of points
+e = 0.18; % Eccentricity
 
 % Ask user to pick boundaries
 [l_in,l_out] = inputHZB();
@@ -24,12 +25,11 @@ n = 180; % Number of points
 phi = linspace(0,pi,n); % n points ranging from 0 to pi
 a = 0.5*a_bin; % Semidistance of binary separation
 
-d_in = Ypoly(Star1,Star2,l_in,a,n);
-% d_out = Ypoly(Star1,Star2,l_out,a,n); % Currently unused
+a_cr = StabLimit(Star1,Star2,a_bin,e); % Inner stabilty limit
 
 % z is the radiative habitable zone (RHZ)
 z_in = RHZ(Star1,Star2,l_in,a,n);
 z_out = RHZ(Star1,Star2,l_out,a,n);
 
 % Generate plot
-genPlot(d_in,z_in,z_out,n,a);
+genPlot(a_cr,z_in,z_out,n,a);
