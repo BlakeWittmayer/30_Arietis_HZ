@@ -1,5 +1,6 @@
 function [l_in,l_out] = inputHZB()
-T = readtable('Table 2.csv','VariableNamingRule','preserve'); % Habitability Limits for the Sun
+T = readtable('Table 2.csv','VariableNamingRule', ...
+    'preserve');                        % Habitability Limits for the Sun
 clc;
 disp(T);
 while true

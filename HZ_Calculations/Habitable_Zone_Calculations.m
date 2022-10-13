@@ -7,8 +7,8 @@ addpath('input');
 
 % Input Data
 StarA.Name = '30 Arietis Aa';
-StarA.T_eff = 8647.00;
-StarA.L = 4.165;
+StarA.T_eff = 8647.00;                   % Effective stellar temperature
+StarA.L = 4.165;                         % Stellar luminosity
 
 StarB.Name = '30 Arietis Ba';
 StarB.T_eff = 6211.27;

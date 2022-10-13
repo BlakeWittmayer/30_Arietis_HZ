@@ -1,4 +1,4 @@
-function z = z_i(Star1,Star2,s_l,a,n)
+function z = RHZ(Star1,Star2,s_l,a,n)
 phi = linspace(0,pi,n);
 clear Star1.Lp_il Star2.Lp_il
 
@@ -37,6 +37,6 @@ z(1,:) = real(-C./2 - D./2);                            % Equation (18a)
 z(2,:) = real(C./2 + E./2);                             % Equation (18b)
 % z(3,:) = real(C./2 -E./2);                            % Equation (18c)
 % z(4,:) = real(C./2 +E./2);                            % Equation (18d)
-z(:,1) = NaN;
-z(:,n) = NaN;
+z(2,1) = NaN;
+% z(1,n) = NaN;
 end

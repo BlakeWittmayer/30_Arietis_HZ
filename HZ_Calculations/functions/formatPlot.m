@@ -1,10 +1,10 @@
 function formatPlot(s)
 ax = gca; % Get handle to current axes.
 ax.FontName = 'times';
-title(append(s.Name,' Habitable Zone'),'FontSize',30);
+title(append(s.Name,' Habitable Zone'),FontSize=30);
 if s.Name == '30 Arietis Ba'
     a = 0.967;
-    plot(a,0,'.','Color','#BF40BF','MarkerSize',30); % 30 Ari Bb
+    plot(a,0,'.',Color='#BF40BF',MarkerSize=30); % 30 Ari Bb
     text(a,-0.05,'30 Ari Bb',HorizontalAlignment='right',FontSize=12, ...
         FontName='times');
     subtitle('[Fictional Single Star Approximation]',FontSize=20, ...
