@@ -1,8 +1,6 @@
-# 30 Arietis Habitable Zones
+# Habitable_Zone_Calculations.m
 This file plots the stellar habitable zone (HZ) boundaries for 30 Arietis using the expression given from Kopparapu et al. (2014) paper[^1][^2].
 ![HZ](https://user-images.githubusercontent.com/89792296/195188334-ec0e253b-a295-483d-ae70-bc610c9c137b.png)
-
-
 ## Usage
 Input data is assigned into the `Star` structure array.  
 The order of the structure is
@@ -22,10 +20,9 @@ Outputs 1x4 double `dist` containing HZ distances in units of AU.
 4. Early Mars
   
 ## Contact
-Blake Wittmayer & Manfred Cuntz  
+Blake Wittmayer - blake.wittmayer@mavs.uta.edu 
+Manfred Cuntz - cuntz@uta.edu  
 Univerisity of Texas at Arlington  
-blake.wittmayer@mavs.uta.edu  
-cuntz@uta.edu  
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
