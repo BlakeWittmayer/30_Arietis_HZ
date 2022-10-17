@@ -1,3 +1,20 @@
+% This function calculates the relative habitable zone (RHZ) shape of a
+% stellar binary system in units of au. The return value will be a 2xn
+% double. The first row corresponds to the bottom half of the shape along
+% the domain [0<phi<pi] while the second row corresponds to the upper half
+% of the shape along the same domain. Equations, tables, and/or methods
+% referenced in this program can be cited and found from the following
+% papers:
+%
+%   M. Cuntz 2014 ApJ 780 14
+%
+% NOTE: There are bugs that are present or are purposely designed due to
+% the goal of the research.
+%
+% - When phi = 0, an outlier value will be present. A quick fix can be
+%   implemented by asssigned the outlier value to NaN.
+% - This function will only work for P-type systems (See paper for details)
+
 function z = RHZ(Star1,Star2,s_l,a,n)
 phi = linspace(0,pi,n);
 clear Star1.Lp_il Star2.Lp_il

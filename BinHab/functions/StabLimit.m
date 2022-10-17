@@ -1,4 +1,10 @@
-% This function calculates the oribtal stability limit of a binary system
+% This function calculates the inner oribtal stability limit of a stellar
+% binary system in units of au. Equations, tables, and/or methods
+% referenced in this program can be cited and found from the following
+% papers:
+%
+%   M. Cuntz 2014 ApJ 780 14
+
 function a_cr = StabLimit(Star1,Star2,a_bin,e_bin)
 T = readtable('Table 3.csv','VariableNamingRule', ...
     'preserve');
@@ -25,5 +31,5 @@ for i = 0:1:2
 end
 
 F_p = e_bin*sum(g(1,:))+(e_bin^2)*sum(g(2,:));
-a_cr = a_bin*(sum(g(3,:))+F_p);
+a_cr = a_bin*(sum(g(3,:))+F_p);                         % Equation (47)
 end

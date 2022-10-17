@@ -1,3 +1,10 @@
+% This function reads a csv table then asks the user to select an index
+% value that returns an inner and outer habitable zone boundary (HZB) in
+% units of au. Equations, tables, and/or methods referenced in this
+% program can be cited and found from the following papers:
+%
+%   M. Cuntz 2014 ApJ 780 14
+
 function [l_in,l_out] = inputHZB()
 T = readtable('Table 2.csv','VariableNamingRule', ...
     'preserve');                        % Habitability Limits for the Sun
