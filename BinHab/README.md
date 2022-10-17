@@ -13,7 +13,8 @@ The equations and methods used in this program can be found and cited from the f
 Currently, the application of BinHab.m is limited only to assessing the habitability of P-type stellar binary systems. 
 For the purposes of our research, the binary pair 30 Arietis Ba & Bb will be the focus.
 
-![BinHab](https://user-images.githubusercontent.com/89792296/195141222-433efc84-5622-4f36-9fc0-0156d267aff3.png)
+![BinHab](https://user-images.githubusercontent.com/89792296/195906031-3f7ae56a-dcd3-4bdd-b671-3c240fd7301f.png)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
