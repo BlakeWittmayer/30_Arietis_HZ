@@ -24,14 +24,14 @@ tiledlayout(2,1);
 
 % Top plot
 nexttile
-plot(0,0,'.',Color='#EDB120',MarkerSize=30); % Star at origin
+plot(0,0,'.',Color='#EDB120',MarkerSize=50); % Star at origin
 hold on
 formatPlot(StarA);
 hold off
 
 % Bottom plot
 nexttile
-plot(0,0,'.',Color='#EDB120',MarkerSize=30); % Star at origin 
+plot(0,0,'.',Color='#EDB120',MarkerSize=50); % Star at origin 
 hold on
 formatPlot(StarB);
 hold off
