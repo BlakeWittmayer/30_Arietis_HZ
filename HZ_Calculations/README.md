@@ -1,6 +1,7 @@
 # Habitable_Zone_Calculations.m
 This file plots the stellar habitable zone (HZ) boundaries for 30 Arietis using the expression given from Kopparapu et al. (2014) paper[^1][^2].
-![HZ](https://user-images.githubusercontent.com/89792296/195188334-ec0e253b-a295-483d-ae70-bc610c9c137b.png)
+![HZBoundaries](https://user-images.githubusercontent.com/89792296/196291029-cfca35c5-78d6-48c2-b657-a9529a7a2ab1.png)
+
 ## Usage
 Input data is assigned into the `Star` structure array.  
 The order of the structure is
