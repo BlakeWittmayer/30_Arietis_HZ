@@ -1,21 +1,24 @@
-from gettext import npgettext
 import matplotlib.pyplot as plt
-import mathimport numpy as np
+import math
+import numpy as np
 from decimal import *
 
 def cart2pol(x, y):
     rho = np.sqrt(x ** 2 + y ** 2)
     phi = np.arctan2(y, x)
     return (phi, rho)
-
+    
 def catStypeData(a, b, c):
     return a[0: c + 1] + list(reversed(b[0: c]))
 
 lineStyles = ['-', '--', ':']
 
+# Line order: Inner, Outer, Stability limit
+# Line styles: solid, dashed, dotted
+
 # Read Settings
 figureSetting = {}
-fs = open('PolarIN.DAT', 'r')
+fs = open('dat/PolarIN.DAT', 'r')
 lines = fs.readlines()
 
 figureSetting['ABIN'] = float(lines[0])
@@ -43,10 +46,9 @@ fs.close()
 
 # Data Reading and Processing
 data = {}
-if figureSetting['type'] == 1:   =20
-    dis = (0.5 - figureSetting['AM2'] / (figureSetting['AM1'] + figureSet=
-ting['AM2'])) * figureSetting['ABIN'] * figureSetting['EBIN']
-    f = open('PolarOUT.DAT', "r")
+if figureSetting['type'] == 1:    
+    dis = (0.5 - figureSetting['AM2'] / (figureSetting['AM1'] + figureSetting['AM2'])) * figureSetting['ABIN'] * figureSetting['EBIN']
+    f = open('dat/PolarOUT.DAT', "r")
     lines = f.readlines()
     deg = []
     inner1 = []
@@ -61,7 +63,7 @@ ting['AM2'])) * figureSetting['ABIN'] * figureSetting['EBIN']
         outer2.append(float(line.split()[4]))
     data['stab'] = float(line.rstrip().split()[5])
     f.close()
-   =20
+    
     data['degIn'] = deg
     data['degOut'] = deg
     if np.isnan(inner1[0]):
@@ -70,10 +72,10 @@ ting['AM2'])) * figureSetting['ABIN'] * figureSetting['EBIN']
     else:
         data['inner'] = inner1
         data['outer'] = outer1
-       =20
+        
 elif figureSetting['type'] == 2:
     dis = figureSetting['ABIN'] / 2
-    f = open('PolarOUT.DAT', "r")
+    f = open('dat/PolarOUT.DAT', "r")
     lines = f.readlines()
     deg = []
     inner1 = []
@@ -92,7 +94,7 @@ elif figureSetting['type'] == 2:
         outer4.append(float(line.split()[6]))
     data['stab'] = float(line.rstrip().split()[7])
     f.close()
-   =20
+    
     lenI = np.where(~np.isnan(inner1))[0][-1]
     data['degIn'] = catStypeData(deg, deg, lenI)
     data['inner'] = catStypeData(inner1, inner2, lenI)
@@ -114,50 +116,33 @@ elif figureSetting['type'] == 2:
         data['outer'] = catStypeData(outer1, outer2, lenO)
 
 # Converting coordinates
-xIn = [np.cos(a * np.pi / 180) * b + dis for a, b in zip(data['degIn'], d=
-ata['inner'])]
-yIn = [np.sin(a * np.pi / 180) * b for a, b in zip(data['degIn'], data['i=
-nner'])]
-xOut = [np.cos(a * np.pi / 180) * b + dis for a, b in zip(data['degOut'],=
- data['outer'])]
-yOut = [np.sin(a * np.pi / 180) * b for a, b in zip(data['degOut'], data[=
-'outer'])]
+xIn = [np.cos(a * np.pi / 180) * b + dis for a, b in zip(data['degIn'], data['inner'])]
+yIn = [np.sin(a * np.pi / 180) * b for a, b in zip(data['degIn'], data['inner'])]
+xOut = [np.cos(a * np.pi / 180) * b + dis for a, b in zip(data['degOut'], data['outer'])]
+yOut = [np.sin(a * np.pi / 180) * b for a, b in zip(data['degOut'], data['outer'])]
 
-(data['degIn'], data['inner']) = zip(*[cart2pol(a, b) for a, b in zip(xIn=
-, yIn)])
-data['degIn'] = list(data['degIn']) + list(reversed([a * (-1) for a in da=
-ta['degIn'][1: -2]]))
-data['inner'] = list(data['inner']) + list(reversed(data['inner'][1: -2])=
-)
+(data['degIn'], data['inner']) = zip(*[cart2pol(a, b) for a, b in zip(xIn, yIn)])
+data['degIn'] = list(data['degIn']) + list(reversed([a * (-1) for a in data['degIn'][1: -2]]))
+data['inner'] = list(data['inner']) + list(reversed(data['inner'][1: -2]))
 
-(data['degOut'], data['outer']) = zip(*[cart2pol(a, b) for a, b in zip(xO=
-ut, yOut)])
-data['degOut'] = list(data['degOut']) + list(reversed([a * (-1) for a in =
-data['degOut'][1: -2]]))
+(data['degOut'], data['outer']) = zip(*[cart2pol(a, b) for a, b in zip(xOut, yOut)])
+data['degOut'] = list(data['degOut']) + list(reversed([a * (-1) for a in data['degOut'][1: -2]]))
 data['outer']= list(data['outer'])+list(reversed(data['outer'][1: -2]))
 
 # Plot HZ limits
 cir = np.linspace(0, 2 * np.pi, 181)
 
 fig = plt.figure()
-lin1, = plt.polar(data['degIn'], data['inner'], color = figureSetting['=
-lineColor1'], linestyle = lineStyles[figureSetting['lineStyle1'] - 1], li=
-newidth = 2)
-lin2, = plt.polar(data['degOut'], data['outer'], color = figureSetting[=
-'lineColor2'], linestyle = lineStyles[figureSetting['lineStyle2'] - 1], l=
-inewidth = 2)
-lin3, = plt.polar(cir, data['stab'] * np.ones(len(cir)), color = figure=
-Setting['lineColor3'], linestyle = lineStyles[figureSetting['lineStyle3']=
- - 1], linewidth = 2)
+lin1, = plt.polar(data['degIn'], data['inner'], color = figureSetting['lineColor1'], linestyle = lineStyles[figureSetting['lineStyle1'] - 1], linewidth = 2)
+lin2, = plt.polar(data['degOut'], data['outer'], color = figureSetting['lineColor2'], linestyle = lineStyles[figureSetting['lineStyle2'] - 1], linewidth = 2)
+lin3, = plt.polar(cir, data['stab'] * np.ones(len(cir)), color = figureSetting['lineColor3'], linestyle = lineStyles[figureSetting['lineStyle3'] - 1], linewidth = 2)
 
 # Plot stars
 if figureSetting['type'] == 1:
     fillIn = max(max(data['inner']), data['stab'])
     fillOut = min(data['outer'])
-    disPri = figureSetting['ABIN'] * figureSetting['AM2'] / (figureSettin=
-g['AM1'] + figureSetting['AM2'])
-    disSec = figureSetting['ABIN'] * figureSetting['AM1'] / (figureSettin=
-g['AM1'] + figureSetting['AM2'])
+    disPri = figureSetting['ABIN'] * figureSetting['AM2'] / (figureSetting['AM1'] + figureSetting['AM2'])
+    disSec = figureSetting['ABIN'] * figureSetting['AM1'] / (figureSetting['AM1'] + figureSetting['AM2'])
     r1 = fillOut * 0.03
     r2 = r1 * figureSetting['AM2'] / figureSetting['AM1']
     xPri = r1 * np.cos(np.linspace(0, 2 * np.pi, 200)) - disPri
@@ -174,14 +159,12 @@ elif figureSetting['type'] == 2:
     plt.fill(cir, fillOut * 0.02 * np.ones(len(cir)), color = '#A52A2A')
 
 # Fill HZ
-plt.fill_between(cir, fillIn * np.ones(len(cir)), fillOut * np.ones(len(cir=
-)), facecolor = '#C8C8C8')
+plt.fill_between(cir, fillIn * np.ones(len(cir)), fillOut * np.ones(len(cir)), facecolor = '#C8C8C8')
 
 # Figure setting
 ax = plt.gca()
 if figureSetting['rMax'] == 0:
-    figureSetting['rMax'] = (math.ceil(2 * max(max(data['outer']), data['=
-stab']))) / 2
+    figureSetting['rMax'] = (math.ceil(2 * max(max(data['outer']), data['stab']))) / 2
 ax.set_rlim(0, figureSetting['rMax'])
 
 if figureSetting['rMax'] > 6 and figureSetting['rMax'] <= 10:
@@ -206,9 +189,8 @@ if figureSetting['legend3'] != '':
     legendHandles.append(lin3)
     legendLabels.append(figureSetting['legend3'])
 if len(legendHandles) > 0:
-    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to=
-_anchor = (0.5, -0.08), ncol = 3)
+    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to_anchor = (0.5, -0.08), ncol = 3)
 
-# Save figure=20
+# Save figure 
 plt.tight_layout()
-fig.savefig('Result.png')=
+fig.savefig('Result.png')
