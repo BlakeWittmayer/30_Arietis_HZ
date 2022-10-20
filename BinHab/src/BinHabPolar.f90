@@ -9,8 +9,8 @@ PROGRAM BinHabpolar
             COMMON / TRAN1 / AL1,TE1,RS1,AM1
             COMMON / TRAN2 / AL2,TE2,RS2,AM2
       !C
-            OPEN(05,FILE='PolarIN.DAT',STATUS='OLD')
-            OPEN(18,FILE='PolarOUT.DAT',STATUS='NEW')
+            OPEN(05,FILE='dat/PolarIN.DAT',STATUS='OLD')
+            OPEN(18,FILE='dat/PolarOUT.DAT',STATUS='NEW')
       !C
             READ(05,*) A2P
             READ(05,*) EP
@@ -54,12 +54,12 @@ PROGRAM BinHabpolar
               AP   = A2P / 2.0D0
               ADIS = AP
               DIS  = ADIS*(AM1-AM2)/(AM1+AM2)
-            ADISP = AP*(1.0D0+EP)
-            ADISE = AP
-            ADISM = AP*(1.0D0-EP)
+              ADISP = AP*(1.0D0+EP)
+              ADISE = AP
+              ADISM = AP*(1.0D0-EP)
               IHZO  = IHZO + 3
       !C		
-            IF (KNEW.EQ.1) THEN
+              IF (KNEW.EQ.1) THEN
                 ZL1I = ZLFCT(AL1,TE1,IHZI,AMPL)
                 ZL1O = ZLFCT(AL1,TE1,IHZO,AMPL)
                 ZL2I = ZLFCT(AL2,TE2,IHZI,AMPL)
@@ -214,8 +214,8 @@ PROGRAM BinHabpolar
             PHI   = (PI / 1.8D2) * DBLE(I)
             COSPHI = DCOS(PHI)
       !C---
-            A2     = 2.0D0*ADIS**2.0D0*(1.0D0-2.0D0*COSPHI**2.0D0)-
-           .          (AL1+AL2) 
+            A2     = 2.0D0*ADIS**2.0D0*(1.0D0-2.0D0*COSPHI**2.0D0)-&
+                (AL1+AL2) 
             A1     = 2.0D0*ADIS*COSPHI*(AL1-AL2)
             A0     = ADIS**4.0D0-ADIS**2.0D0*(AL1+AL2)
       !C---
@@ -223,8 +223,8 @@ PROGRAM BinHabpolar
             A1H    = -4.0D0*A0
             A0H    = 4.0D0*A2*A0-A1**2.0D0
       !C
-            R      = (1.0D0/6.0D0)*A2H*A1H-(1.0D0/2.0D0)*A0H-
-           .         (1.0D0/2.7D1)*A2H**3.0D0
+            R      = (1.0D0/6.0D0)*A2H*A1H-(1.0D0/2.0D0)*A0H-&
+               (1.0D0/2.7D1)*A2H**3.0D0
             Q      = (1.0D0/3.0D0)*A1H-(1.0D0/9.0D0)*A2H**2.0D0
       !C
             HELP0  = Q**3.0D0+R**2.0D0
@@ -257,17 +257,17 @@ PROGRAM BinHabpolar
       !C
             C     = DSQRT(HELP1)
       !C
-            IF (C.GT.0.0D0)
-           . HELP2 = -C**2.0D0-2.0D0*A2+2.0D0*A1/C
-            IF (C.EQ.0.0D0)
-           . HELP2 = DSQRT(-2.0D0*A2+2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
+            IF (C.GT.0.0D0)&
+       HELP2 = -C**2.0D0-2.0D0*A2+2.0D0*A1/C
+            IF (C.EQ.0.0D0)&
+       HELP2 = DSQRT(-2.0D0*A2+2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
       !C
             D     = DSQRT(HELP2)
       !C
-            IF (C.GT.0.0D0)
-           . HELP3 = -C**2.0D0-2.0D0*A2-2.0D0*A1/C
-            IF (C.EQ.0.0D0)
-           . HELP3 = DSQRT(-2.0D0*A2-2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
+            IF (C.GT.0.0D0)&
+       HELP3 = -C**2.0D0-2.0D0*A2-2.0D0*A1/C
+            IF (C.EQ.0.0D0)&
+       HELP3 = DSQRT(-2.0D0*A2-2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
       !C
             E     = DSQRT(HELP3)
       !C
@@ -416,8 +416,8 @@ PROGRAM BinHabpolar
             PHI   = (PI / 1.8D2) * DBLE(I) * 2.0D-2
             COSPHI = DCOS(PHI)
       !C---
-            A2     = 2.0D0*ADIS**2.0D0*(1.0D0-2.0D0*COSPHI**2.0D0)-
-           .          (AL1+AL2) 
+            A2     = 2.0D0*ADIS**2.0D0*(1.0D0-2.0D0*COSPHI**2.0D0)-&
+                (AL1+AL2) 
             A1     = 2.0D0*ADIS*COSPHI*(AL1-AL2)
             A0     = ADIS**4.0D0-ADIS**2.0D0*(AL1+AL2)
       !C---
@@ -425,8 +425,8 @@ PROGRAM BinHabpolar
             A1H    = -4.0D0*A0
             A0H    = 4.0D0*A2*A0-A1**2.0D0
       !C
-            R      = (1.0D0/6.0D0)*A2H*A1H-(1.0D0/2.0D0)*A0H-
-           .         (1.0D0/2.7D1)*A2H**3.0D0
+            R      = (1.0D0/6.0D0)*A2H*A1H-(1.0D0/2.0D0)*A0H-&
+               (1.0D0/2.7D1)*A2H**3.0D0
             Q      = (1.0D0/3.0D0)*A1H-(1.0D0/9.0D0)*A2H**2.0D0
       !C
             HELP0  = Q**3.0D0+R**2.0D0
@@ -437,9 +437,9 @@ PROGRAM BinHabpolar
               DELP0 = DABS(HELP0)
               DELPS = DSQRT(DELP0)
               XI    = DATAN(DELPS/R)/3.0D0
-              Y1    = (-1.0D0/3.0D0)*A2H+
-           .             2.0D0*(R**2.0D0+DELPS**2.0D0)**(1.0D0/6.0D0)*
-           .             DCOS(XI)
+              Y1    = (-1.0D0/3.0D0)*A2H+&
+                   2.0D0*(R**2.0D0+DELPS**2.0D0)**(1.0D0/6.0D0)*&
+                   DCOS(XI)
             ENDIF
             IF (HELP0.GE.0.0D0) THEN
               VRO1    = R+DSQRT(HELP0)      
@@ -459,19 +459,19 @@ PROGRAM BinHabpolar
       !C
             C     = DSQRT(HELP1)
       !C
-            IF (C.GT.0.0D0)
-           . HELP2 = -C**2.0D0-2.0D0*A2+2.0D0*A1/C
-            IF (C.EQ.0.0D0)
-           . HELP2 = DSQRT(-2.0D0*A2+2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
+            IF (C.GT.0.0D0)&
+       HELP2 = -C**2.0D0-2.0D0*A2+2.0D0*A1/C
+            IF (C.EQ.0.0D0)&
+       HELP2 = DSQRT(-2.0D0*A2+2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
       !C
             IF (DABS(HELP2).LT.1.0D-12) HELP2 = 0.0D0
       !C
             D     = DSQRT(HELP2)
       !C
-            IF (C.GT.0.0D0)
-           . HELP3 = -C**2.0D0-2.0D0*A2-2.0D0*A1/C
-            IF (C.EQ.0.0D0)
-           . HELP3 = DSQRT(-2.0D0*A2-2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
+            IF (C.GT.0.0D0)&
+       HELP3 = -C**2.0D0-2.0D0*A2-2.0D0*A1/C
+            IF (C.EQ.0.0D0)&
+       HELP3 = DSQRT(-2.0D0*A2-2.0D0*DSQRT(Y1**2.0D0-4.0D0*A0))
       !C
             IF (DABS(HELP3).LT.1.0D-12) HELP3 = 0.0D0
       !C
@@ -542,22 +542,22 @@ PROGRAM BinHabpolar
             IMPLICIT DOUBLEPRECISION (A-H,O-Z)
       !C
             IF (IC.EQ.1) THEN
-              ZSTFCT = 1.60D0
-           .            + 5.10D0*EBIN
-           .            - 2.22D0*EBIN**2.0D0
-           .            + 4.12D0*AMU
-           .            - 4.27D0*EBIN*AMU
-           .            - 5.09D0*AMU**2.0D0
-           .            + 4.61D0*EBIN**2.0D0*AMU**2.0D0
+              ZSTFCT = 1.60D0&
+                  + 5.10D0*EBIN&
+                  - 2.22D0*EBIN**2.0D0&
+                  + 4.12D0*AMU&
+                  - 4.27D0*EBIN*AMU&
+                  - 5.09D0*AMU**2.0D0&
+                  + 4.61D0*EBIN**2.0D0*AMU**2.0D0
             ENDIF
       !C
             IF (IC.EQ.2) THEN
-              ZSTFCT = 0.464D0
-           .            - 0.380D0*AMU
-           .            - 0.631D0*EBIN
-           .            + 0.586D0*AMU*EBIN
-           .            + 0.150D0*EBIN**2.0D0
-           .            - 0.198D0*AMU*EBIN**2.0D0
+              ZSTFCT = 0.464D0&
+                  - 0.380D0*AMU&
+                  - 0.631D0*EBIN&
+                  + 0.586D0*AMU*EBIN&
+                  + 0.150D0*EBIN**2.0D0&
+                  - 0.198D0*AMU*EBIN**2.0D0
             ENDIF
       !C
             RETURN
@@ -639,8 +639,8 @@ PROGRAM BinHabpolar
               AA(3,2) = 1.0D0/(X(3)-X(2))
               AA(3,3) = 2.0D0/(X(3)-X(2))
               BB(1) = 3.0D0*(VF(2)-VF(1))/(X(2)-X(1))**2.0D0
-              BB(2) = 3.0D0*((VF(2)-VF(1))/((X(2)-X(1))**2.0D0)
-           .           +(VF(3)-VF(2))/((X(3)-X(2))**2.0D0))
+              BB(2) = 3.0D0*((VF(2)-VF(1))/((X(2)-X(1))**2.0D0)&
+                 +(VF(3)-VF(2))/((X(3)-X(2))**2.0D0))
               BB(3) = 3.0D0*(VF(3)-VF(2))/(X(3)-X(2))**2.0D0
               DO 701 I1 = 2,3
                 RAT = AA(I1,I1-1)/AA(I1-1,I1-1)
@@ -663,13 +663,13 @@ PROGRAM BinHabpolar
               PRINT *,ALPHA1,BETA1,ALPHA2,BETA2
               IF (XNEW.GE.X(1).AND.XNEW.LT.X(2)) THEN
                 TNEW = (XNEW-X(1))/(X(2)-X(1))
-                SEFFSK = (1-TNEW)*VF(1)+TNEW*VF(2)+TNEW*(1-TNEW)
-           .             *(ALPHA1*(1-TNEW)+BETA1*TNEW)
+                SEFFSK = (1-TNEW)*VF(1)+TNEW*VF(2)+TNEW*(1-TNEW)&
+                   *(ALPHA1*(1-TNEW)+BETA1*TNEW)
               ENDIF
               IF (XNEW.GE.X(2).AND.XNEW.LE.X(3)) THEN
                 TNEW = (XNEW-X(2))/(X(3)-X(2))
-                SEFFSK = (1-TNEW)*VF(2)+TNEW*VF(3)+TNEW*(1-TNEW)
-           .             *(ALPHA2*(1-TNEW)+BETA2*TNEW)
+                SEFFSK = (1-TNEW)*VF(2)+TNEW*VF(3)+TNEW*(1-TNEW)&
+                   *(ALPHA2*(1-TNEW)+BETA2*TNEW)
               ENDIF
             ELSE
               IF (LHZ.EQ.1) THEN
@@ -677,7 +677,7 @@ PROGRAM BinHabpolar
                 B0  =  2.533D-08
                 C0  = -1.332D-11
                 D0  = -3.097D-15
-              E0  =  1.776D0
+                E0  =  1.776D0
               ENDIF
       !C
               IF (LHZ.EQ.3) THEN
@@ -685,7 +685,7 @@ PROGRAM BinHabpolar
                 B0  =  1.9394D-09
                 C0  = -4.3618D-12
                 D0  = -6.8260D-16
-              E0  =  1.0146D0
+                E0  =  1.0146D0
               ENDIF
       !C
               IF (LHZ.EQ.4) THEN
@@ -693,7 +693,7 @@ PROGRAM BinHabpolar
                 B0  =  1.698D-09
                 C0  = -3.198D-12
                 D0  = -5.575D-16
-              E0  =  0.356D0
+                E0  =  0.356D0
               ENDIF
       !C
               IF (LHZ.EQ.5) THEN
