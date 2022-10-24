@@ -13,12 +13,12 @@ authors:
     family-names: Wittmayer
     email: blake.wittmayer@mavs.uta.edu
     affiliation: Student
-  - given-name: Manfred Cuntz
-    name-particle: Manfred
+  - name-particle: Manfred
     family-names: Cuntz
     email: cuntz@uta.edu
     affiliation: Professor
     orcid: 'https://orcid.org/0000-0002-8883-2930'
+    given-name: Manfred Cuntz
 keywords:
   - physics
   - astrophysics
