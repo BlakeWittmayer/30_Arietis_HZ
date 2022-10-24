@@ -1,0 +1,27 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: 30 Arietis Research
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - name-particle: Blake
+    family-names: Wittmayer
+    email: blake.wittmayer@mavs.uta.edu
+    affiliation: Student
+  - name-particle: Manfred
+    family-names: Cuntz
+    email: cuntz@uta.edu
+    affiliation: Professor
+    orcid: 'https://orcid.org/0000-0002-8883-2930'
+keywords:
+  - physics
+  - astrophysics
+  - binary-stars
+  - celestial-mechanics
+  - astrobiology
+  - 30-arietis
+license: MIT
