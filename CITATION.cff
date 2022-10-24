@@ -8,11 +8,13 @@ message: >-
   metadata from this file.
 type: software
 authors:
-  - name-particle: Blake
+  - given-names: Blake Wittmayer
+    name-particle: Blake
     family-names: Wittmayer
     email: blake.wittmayer@mavs.uta.edu
     affiliation: Student
-  - name-particle: Manfred
+  - given-name: Manfred Cuntz
+    name-particle: Manfred
     family-names: Cuntz
     email: cuntz@uta.edu
     affiliation: Professor
