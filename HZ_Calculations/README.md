@@ -1,5 +1,5 @@
 # Habitable_Zone_Calculations.m
-This file plots the stellar habitable zone (HZ) boundaries for 30 Arietis using the expression given from Kopparapu et al. (2014) paper[^1][^2].
+This file plots the stellar habitable zone boundaries (HZB) for 30 Arietis using the expression given from Kopparapu et al. (2014) paper[^1][^2].
 ![HZBoundaries](https://user-images.githubusercontent.com/89792296/196291029-cfca35c5-78d6-48c2-b657-a9529a7a2ab1.png)
 
 ## Usage
@@ -12,14 +12,15 @@ The order of the structure is
   * **L** - Stellar luminousity \[L<sub>⊙</sub>\]  
   * **HZ** - Habitable zone distances \[AU\] 
 
-`HZ_Dist(T_eff,L)`  
-Outputs 1x4 double `dist` containing HZ distances in units of AU. 
+The coefficients used in HZ_Dist.m are stored in Coeff.csv. The following table displays the coefficients used for calculating the habitable zone around a star for a planet of 1 M<sub>⊕</sub>
+| Constant  | Recent Venus | Runaway Greenhouse | Maximum Greenhouse | Early Mars |
+| ------------- | -------------: | -------------: | -------------: | -------------: |
+| S<sub>eff⊙</sub> | 1.776  | 1.107 | 0.356 | 0.32 |
+| a  | 2.136 × 10<sup>-4</sup>  | 1.332 × 10<sup>-4</sup> | 6.171 × 10<sup>−5</sup> | 5.547 × 10<sup>−5</sup> |
+| b  | 2.533 × 10<sup>−8</sup> | 1.58 × 10<sup>−8</sup> | 1.698 × 10<sup>−9</sup> | 1.526 × 10<sup>−9</sup> |
+| c  | −1.332 × 10<sup>−11</sup> | −8.308 × 10<sup>−12</sup> | −3.198 × 10<sup>−12</sup> | −2.874 × 10<sup>−12</sup> |
+| d  | −3.097 × 10<sup>−15</sup> | −1.931 × 10<sup>−15</sup> | −5.575 × 10<sup>−16</sup> | −5.011 × 10<sup>−16</sup> |
 
-1. Recent Venus
-2. Runaway Greenhouse
-3. Maximum Greenhouse
-4. Early Mars
-  
 ## Contact
 Blake Wittmayer - blake.wittmayer@mavs.uta.edu 
 Manfred Cuntz - cuntz@uta.edu  
