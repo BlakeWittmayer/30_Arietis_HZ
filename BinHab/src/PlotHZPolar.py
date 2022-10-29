@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import math
 import numpy as np
 from decimal import *
+import sys
+sys.path.append('../')
 
 def cart2pol(x, y):
     rho = np.sqrt(x ** 2 + y ** 2)
@@ -18,29 +20,29 @@ lineStyles = ['-', '--', ':']
 
 # Read Settings
 figureSetting = {}
-fs = open('dat/PolarIN.DAT', 'r')
+fs = open('dat/BaCPolarIN.DAT', 'r')
 lines = fs.readlines()
 
-figureSetting['ABIN'] = float(lines[0])
-figureSetting['EBIN'] = float(lines[1])
-figureSetting['AM1'] = float(lines[4])
-figureSetting['AM2'] = float(lines[7])
-figureSetting['type'] = int(lines[12])
+figureSetting['ABIN'] = float(lines[0])             #1  SEMI-MAJOR AXIS OF STAR SYSTEM
+figureSetting['EBIN'] = float(lines[1])             #2  ECCENTRICITY OF STAR SYSTEM
+figureSetting['AM1'] = float(lines[4])              #5  MASS OF STAR1
+figureSetting['AM2'] = float(lines[7])              #8  MASS OF STAR2
+figureSetting['type'] = int(lines[12])              #13 1 = P/PT-TYPE, 2 = S/ST-TYPE
 
-figureSetting['title'] = lines[13].rstrip()
-figureSetting['rMax'] = float(lines[14])
+figureSetting['title'] = lines[13].rstrip()         #14 IGNORE
+figureSetting['rMax'] = float(lines[14])            #15 IGNORE
 
-figureSetting['lineStyle1'] = int(lines[15])
-figureSetting['lineColor1'] = lines[16].rstrip()
-figureSetting['legend1'] = lines[17].rstrip()
+figureSetting['lineStyle1'] = int(lines[15])        #16 1
+figureSetting['lineColor1'] = lines[16].rstrip()    #17 r
+figureSetting['legend1'] = lines[17].rstrip()       #18 Runaway Greenhouse
 
-figureSetting['lineStyle2'] = int(lines[18])
-figureSetting['lineColor2'] = lines[19].rstrip()
-figureSetting['legend2'] = lines[20].rstrip()
+figureSetting['lineStyle2'] = int(lines[18])        #19 2
+figureSetting['lineColor2'] = lines[19].rstrip()    #20 b
+figureSetting['legend2'] = lines[20].rstrip()       #21 Maximum Greenhouse
 
-figureSetting['lineStyle3'] = int(lines[21])
-figureSetting['lineColor3'] = lines[22].rstrip()
-figureSetting['legend3'] = lines[23].rstrip()
+figureSetting['lineStyle3'] = int(lines[21])        #22 3
+figureSetting['lineColor3'] = lines[22].rstrip()    #23 k
+figureSetting['legend3'] = lines[23].rstrip()       #24 Stability Limit
 
 fs.close()
 
@@ -175,22 +177,23 @@ elif figureSetting['rMax'] <= 3:
     ax.set_rticks(np.arange(0, figureSetting['rMax'] + 0.5, 0.5))
 
 # Figure tile and legend
-if figureSetting['title'] != '':
-    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
-legendHandles = []
-legendLabels = []
-if figureSetting['legend1'] != '':
-    legendHandles.append(lin1)
-    legendLabels.append(figureSetting['legend1'])
-if figureSetting['legend2'] != '':
-    legendHandles.append(lin2)
-    legendLabels.append(figureSetting['legend2'])
-if figureSetting['legend3'] != '':
-    legendHandles.append(lin3)
-    legendLabels.append(figureSetting['legend3'])
-if len(legendHandles) > 0:
-    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to_anchor = (0.5, -0.08), ncol = 3)
+#if figureSetting['title'] != '':
+#    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
+#legendHandles = []
+#legendLabels = []
+#if figureSetting['legend1'] != '':
+#    legendHandles.append(lin1)
+#    legendLabels.append(figureSetting['legend1'])
+#if figureSetting['legend2'] != '':
+#    legendHandles.append(lin2)
+#    legendLabels.append(figureSetting['legend2'])
+#if figureSetting['legend3'] != '':
+#    legendHandles.append(lin3)
+#    legendLabels.append(figureSetting['legend3'])
+#if len(legendHandles) > 0:
+#    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to_anchor = (0.5, -0.08), ncol = 3)#
 
 # Save figure 
 plt.tight_layout()
+fig.savefig('Result.eps', format='eps')
 fig.savefig('Result.png')
