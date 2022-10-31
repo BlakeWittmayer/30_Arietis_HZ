@@ -9,6 +9,8 @@
       COMMON / TRAN1 / AL1,TE1,RS1,AM1
       COMMON / TRAN2 / AL2,TE2,RS2,AM2
 !C
+      OPEN(10,FILE='PolarOUT.DAT',STATUS='OLD', IOSTAT=ierr)
+      IF (ierr == 0) CLOSE (10,STATUS='DELETE')
       OPEN(05,FILE='PolarIN.DAT',STATUS='OLD')
       OPEN(18,FILE='PolarOUT.DAT',STATUS='NEW')
 !C
@@ -25,7 +27,7 @@
       READ(05,*) KNEW
       READ(05,*) IHZI
       READ(05,*) IHZO
-      READ(05,*) ISP	  
+      READ(05,*) ISP
 !C
       IF (ISP.EQ.1) ANG = 181
       IF (ISP.EQ.2) ANG = 4501

@@ -11,7 +11,7 @@
 !C
       OPEN(10,FILE='dat/PolarOUT.DAT',STATUS='OLD', IOSTAT=ierr)
       IF (ierr == 0) CLOSE (10,STATUS='DELETE')
-      OPEN(05,FILE='dat/BaBbPolarIN.DAT',STATUS='OLD')
+      OPEN(05,FILE='dat/PolarIN.DAT',STATUS='OLD')
       OPEN(18,FILE='dat/PolarOUT.DAT',STATUS='NEW')
 !C
       READ(05,*) A2P    !1    SEMI-MAJOR AXIS OF STAR SYSTEM
@@ -103,8 +103,8 @@
 !C**   ZL1/2O ...  RECAST LUMINOSITY (SLO)
 !C**   AM1/2  ...  MASS
 !C**
-  997 FORMAT(1P,E12.4,7(1X,E16.7E3))
-  998 FORMAT(1P,E12.4,5(1X,E16.7E3))
+  997 FORMAT(1P,E12.4,7(1X,E16.7))
+  998 FORMAT(1P,E12.4,5(1X,E16.7))
   999 FORMAT(' ')
 !C
 !C**********************************

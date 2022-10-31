@@ -20,7 +20,7 @@ lineStyles = ['-', '--', ':']
 
 # Read Settings
 figureSetting = {}
-fs = open('dat/BaCPolarIN.DAT', 'r')
+fs = open('dat/BaBbPolarIN.DAT', 'r')
 lines = fs.readlines()
 
 figureSetting['ABIN'] = float(lines[0])             #1  SEMI-MAJOR AXIS OF STAR SYSTEM
@@ -50,7 +50,7 @@ fs.close()
 data = {}
 if figureSetting['type'] == 1:    
     dis = (0.5 - figureSetting['AM2'] / (figureSetting['AM1'] + figureSetting['AM2'])) * figureSetting['ABIN'] * figureSetting['EBIN']
-    f = open('dat/PolarOUT.DAT', "r")
+    f = open('dat/BaBbPolarOUT.DAT', "r")
     lines = f.readlines()
     deg = []
     inner1 = []
@@ -77,7 +77,7 @@ if figureSetting['type'] == 1:
         
 elif figureSetting['type'] == 2:
     dis = figureSetting['ABIN'] / 2
-    f = open('dat/PolarOUT.DAT', "r")
+    f = open('dat/BaBbPolarOUT.DAT', "r")
     lines = f.readlines()
     deg = []
     inner1 = []
@@ -146,7 +146,7 @@ if figureSetting['type'] == 1:
     disPri = figureSetting['ABIN'] * figureSetting['AM2'] / (figureSetting['AM1'] + figureSetting['AM2'])
     disSec = figureSetting['ABIN'] * figureSetting['AM1'] / (figureSetting['AM1'] + figureSetting['AM2'])
     r1 = fillOut * 0.03
-    r2 = r1 * figureSetting['AM2'] / figureSetting['AM1']
+    r2 = r1 * figureSetting['AM2'] / figureSetting['AM1'] * 1.5
     xPri = r1 * np.cos(np.linspace(0, 2 * np.pi, 200)) - disPri
     yPri = r1 * np.sin(np.linspace(0, 2 * np.pi, 200))
     xSec = r2 * np.cos(np.linspace(0, 2 * np.pi, 200)) + disSec
@@ -195,5 +195,5 @@ elif figureSetting['rMax'] <= 3:
 
 # Save figure 
 plt.tight_layout()
-fig.savefig('Result.eps', format='eps')
-fig.savefig('Result.png')
+fig.savefig('dat/BaBbResult.eps', format='eps')
+fig.savefig('dat/BaBbResult.png')
