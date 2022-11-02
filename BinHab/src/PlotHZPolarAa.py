@@ -60,11 +60,11 @@ if figureSetting['type'] == 1:
     outer2 = []
     for line in lines:
         deg.append(float(line.split()[0]))
-        inner1.append(float(line.split()[1]))
-        outer1.append(float(line.split()[2]))
-        inner2.append(float(line.split()[3]))
-        outer2.append(float(line.split()[4]))
-    data['stab'] = float(line.rstrip().split()[5])
+        inner1.append(1.795)
+        outer1.append(3.098)
+        inner2.append(1.795)
+        outer2.append(3.098)
+    data['stab'] = 2.24052978710280
     f.close()
     
     data['degIn'] = deg
@@ -76,48 +76,6 @@ if figureSetting['type'] == 1:
         data['inner'] = inner1
         data['outer'] = outer1
         
-elif figureSetting['type'] == 2:
-    dis = figureSetting['ABIN'] / 2
-    f = open('dat/'+star+'PolarOUT.DAT', "r")
-    lines = f.readlines()
-    deg = []
-    inner1 = []
-    inner2 = []
-    outer1 = []
-    outer2 = []
-    outer3 = []
-    outer4 = []
-    for line in lines:
-        deg.append(float(line.split()[0]))
-        inner1.append(float(line.split()[1]))
-        inner2.append(float(line.split()[2]))
-        outer1.append(float(line.split()[3]))
-        outer2.append(float(line.split()[4]))
-        outer3.append(float(line.split()[5]))
-        outer4.append(float(line.split()[6]))
-    data['stab'] = float(line.rstrip().split()[7])
-    f.close()
-    
-    lenI = np.where(~np.isnan(inner1))[0][-1]
-    data['degIn'] = catStypeData(deg, deg, lenI)
-    data['inner'] = catStypeData(inner1, inner2, lenI)
-    if np.isnan(outer1[0]):
-        if np.isnan(outer2[0]):
-            lenO = np.where(~np.isnan(outer3))[0][-1]
-            deg_mirror = [180 - i for i in deg]
-            outer3_mirror = [-1 * i for i in outer3]
-            data['degOut'] = catStypeData(deg_mirror, deg, lenO)
-            data['outer'] = catStypeData(outer3_mirror, outer4, lenO)
-        else:
-            lenO = np.where(~np.isnan(outer2))[0][-1]
-            deg_mirror = [180 - i for i in deg]
-            data['degOut'] = catStypeData(deg_mirror, deg, lenO)
-            data['outer'] = catStypeData(outer2, outer2, lenO)
-    else:
-        lenO = np.where(~np.isnan(outer1))[0][-1]
-        data['degOut'] = catStypeData(deg, deg, lenO)
-        data['outer'] = catStypeData(outer1, outer2, lenO)
-
 # Converting coordinates
 xIn = [np.cos(a * np.pi / 180) * b + dis for a, b in zip(data['degIn'], data['inner'])]
 yIn = [np.sin(a * np.pi / 180) * b for a, b in zip(data['degIn'], data['inner'])]
@@ -146,7 +104,7 @@ if figureSetting['type'] == 1:
     fillOut = min(data['outer'])
     disPri = figureSetting['ABIN'] * figureSetting['AM2'] / (figureSetting['AM1'] + figureSetting['AM2'])
     disSec = figureSetting['ABIN'] * figureSetting['AM1'] / (figureSetting['AM1'] + figureSetting['AM2'])
-    r1 = fillOut * 0.05
+    r1 = fillOut * 0.03
     r2 = r1 * 0.5
     xPri = r1 * np.cos(np.linspace(0, 2 * np.pi, 200)) - disPri
     yPri = r1 * np.sin(np.linspace(0, 2 * np.pi, 200))
