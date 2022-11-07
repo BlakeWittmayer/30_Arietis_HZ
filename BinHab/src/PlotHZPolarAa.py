@@ -137,23 +137,22 @@ elif figureSetting['rMax'] <= 3:
     ax.set_rticks(np.arange(0, figureSetting['rMax'] + 0.5, 0.5))
 
 # Figure tile and legend
-#if figureSetting['title'] != '':
-#    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
-#legendHandles = []
-#legendLabels = []
-#if figureSetting['legend1'] != '':
-#    legendHandles.append(lin1)
-#    legendLabels.append(figureSetting['legend1'])
-#if figureSetting['legend2'] != '':
-#    legendHandles.append(lin2)
-#    legendLabels.append(figureSetting['legend2'])
-#if figureSetting['legend3'] != '':
-#    legendHandles.append(lin3)
-#    legendLabels.append(figureSetting['legend3'])
-#if len(legendHandles) > 0:
-#    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to_anchor = (0.5, -0.08), ncol = 3)#
+if figureSetting['title'] != '':
+    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
+legendHandles = []
+legendLabels = []
+if figureSetting['legend1'] != '':
+    legendHandles.append(lin1)
+    legendLabels.append(figureSetting['legend1'])
+if figureSetting['legend2'] != '':
+    legendHandles.append(lin2)
+    legendLabels.append(figureSetting['legend2'])
+if figureSetting['legend3'] != '':
+    legendHandles.append(lin3)
+    legendLabels.append(figureSetting['legend3'])
+if len(legendHandles) > 0:
+    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to_anchor = (0.5, -0.08), ncol = 3)#
 
 # Save figure 
 plt.tight_layout()
-fig.savefig('dat/'+star+'Result.eps', format='eps')
-fig.savefig('dat/'+star+'Result.png')
+fig.savefig('dat/'+star+'Poster.png')

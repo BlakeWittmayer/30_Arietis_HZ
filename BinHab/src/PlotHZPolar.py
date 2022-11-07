@@ -14,7 +14,7 @@ def catStypeData(a, b, c):
     return a[0: c + 1] + list(reversed(b[0: c]))
 
 lineStyles = ['-', '--', ':']
-star = 'AaAb'
+star = 'BaC'
 
 # Line order: Inner, Outer, Stability limit
 # Line styles: solid, dashed, dotted
@@ -146,8 +146,8 @@ if figureSetting['type'] == 1:
     fillOut = min(data['outer'])
     disPri = figureSetting['ABIN'] * figureSetting['AM2'] / (figureSetting['AM1'] + figureSetting['AM2'])
     disSec = figureSetting['ABIN'] * figureSetting['AM1'] / (figureSetting['AM1'] + figureSetting['AM2'])
-    r1 = fillOut * 0.05
-    r2 = r1 * 0.5
+    r1 = fillOut * 0.03
+    r2 = r1 * figureSetting['AM2'] / figureSetting['AM1'] * 1.5
     xPri = r1 * np.cos(np.linspace(0, 2 * np.pi, 200)) - disPri
     yPri = r1 * np.sin(np.linspace(0, 2 * np.pi, 200))
     xSec = r2 * np.cos(np.linspace(0, 2 * np.pi, 200)) + disSec
@@ -199,3 +199,4 @@ elif figureSetting['rMax'] <= 3:
 plt.tight_layout()
 fig.savefig('dat/'+star+'Result.eps', format='eps')
 fig.savefig('dat/'+star+'Result.png')
+fig
