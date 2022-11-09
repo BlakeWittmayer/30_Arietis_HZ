@@ -16,3 +16,8 @@ BinHab/.vs/BinHab/v17/.suo
 *.f90
 BinHab/src/BinHabPolar\[2716\].f77
 *.mod
+BinHab/BinHab.pyproj
+BinHab/dat/BaCPolarOUT.csv.xlsx
+BinHab/dat/BaCPoster.png
+BinHab/BinHab.sln
+BinHab/dat/BaCPolarPLOT.DAT

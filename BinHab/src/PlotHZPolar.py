@@ -1,3 +1,4 @@
+from cmath import pi
 import matplotlib.pyplot as plt
 import math
 import numpy as np
@@ -128,9 +129,9 @@ yOut = [np.sin(a * np.pi / 180) * b for a, b in zip(data['degOut'], data['outer'
 data['degIn'] = list(data['degIn']) + list(reversed([a * (-1) for a in data['degIn'][1: -2]]))
 data['inner'] = list(data['inner']) + list(reversed(data['inner'][1: -2]))
 
-(data['degOut'], data['outer']) = zip(*[cart2pol(a, b) for a, b in zip(xOut, yOut)])
+(data['degOut'], data['outer']) = -zip(*[cart2pol(a, b) for a, b in zip(xOut, yOut)])
 data['degOut'] = list(data['degOut']) + list(reversed([a * (-1) for a in data['degOut'][1: -2]]))
-data['outer']= list(data['outer'])+list(reversed(data['outer'][1: -2]))
+data['outer']= list(data['outer'])+list(reversed(data['outer'][1: -2])
 
 # Plot HZ limits
 cir = np.linspace(0, 2 * np.pi, 181)
@@ -146,8 +147,8 @@ if figureSetting['type'] == 1:
     fillOut = min(data['outer'])
     disPri = figureSetting['ABIN'] * figureSetting['AM2'] / (figureSetting['AM1'] + figureSetting['AM2'])
     disSec = figureSetting['ABIN'] * figureSetting['AM1'] / (figureSetting['AM1'] + figureSetting['AM2'])
-    r1 = fillOut * 0.03
-    r2 = r1 * figureSetting['AM2'] / figureSetting['AM1'] * 1.5
+    r1 = fillOut * 0.05
+    r2 = r1 * figureSetting['AM2'] / figureSetting['AM1'] * 4
     xPri = r1 * np.cos(np.linspace(0, 2 * np.pi, 200)) - disPri
     yPri = r1 * np.sin(np.linspace(0, 2 * np.pi, 200))
     xSec = r2 * np.cos(np.linspace(0, 2 * np.pi, 200)) + disSec
@@ -156,13 +157,28 @@ if figureSetting['type'] == 1:
     (angSec, radSec) = zip(*[cart2pol(a, b) for a, b in zip(xSec, ySec)])
     plt.fill(angPri, radPri, color = '#A52A2A')
     plt.fill(angSec, radSec, color = '#A52A2A')
-elif figureSetting['type'] == 2:
-    fillIn = max(data['inner'])
-    fillOut = min(min(data['outer']), data['stab'])
-    plt.fill(cir, fillOut * 0.02 * np.ones(len(cir)), color = '#A52A2A')
 
 # Fill HZ
-plt.fill_between(cir, fillIn * np.ones(len(cir)), fillOut * np.ones(len(cir)), facecolor = '#C8C8C8')
+if figureSetting['type'] == 1:
+    plt.fill_between(cir, fillIn * np.ones(len(cir)), fillOut * np.ones(len(cir)), facecolor = '#C8C8C8')
+if figureSetting['type'] == 2:
+    # Only for case of star BaC
+    if star == 'BaC':
+        z1 = -3.86930740078491
+        z2 = -1.60523004359302
+        z3 = 2.56897768593958
+        z4 = 2.90555975843836
+        RHZin1 = dis + z2 
+        RHZout1 = dis + z1
+        RHZin2 = dis - z3
+        RHZout2 = dis - z4
+        plt.fill_between(cir, RHZin1 * np.ones(len(cir)), RHZout1 * np.ones(len(cir)), facecolor = '#C8C8C8')
+        plt.fill_between(cir, RHZin2 * np.ones(len(cir)), RHZout2 * np.ones(len(cir)), facecolor = '#A3A2A2')
+        # Make stars
+
+        plt.polar(0,-(RHZin2+RHZout2)/2, marker='o', markersize=3.5, color = '#A52A2A')
+        plt.polar(0,(RHZin1+RHZout1)/2, marker='o', markersize=2, color = '#A52A2A')
+
 
 # Figure setting
 ax = plt.gca()
@@ -179,10 +195,10 @@ elif figureSetting['rMax'] <= 3:
     ax.set_rticks(np.arange(0, figureSetting['rMax'] + 0.5, 0.5))
 
 # Figure tile and legend
-#if figureSetting['title'] != '':
-#    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
 #legendHandles = []
 #legendLabels = []
+#if figureSetting['title'] != '':
+#    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
 #if figureSetting['legend1'] != '':
 #    legendHandles.append(lin1)
 #    legendLabels.append(figureSetting['legend1'])
@@ -199,4 +215,19 @@ elif figureSetting['rMax'] <= 3:
 plt.tight_layout()
 fig.savefig('dat/'+star+'Result.eps', format='eps')
 fig.savefig('dat/'+star+'Result.png')
-fig
+if figureSetting['title'] != '':
+    plt.tight_layout()
+    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
+fig.savefig('dat/'+star+'Poster.png')
+
+## Output Plot Data
+#fw = open('dat/'+star+'PolarPLOT.DAT', 'w')
+#wlines = []
+
+#wlines[0] = data['degIn']
+#wlines[1] = data['inner']
+#wlines[2] = data['degOut']
+#wlines[3] = data['outer']
+ 
+#fw.writelines(wlines)
+#fw.close()
