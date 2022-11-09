@@ -1,4 +1,5 @@
 from cmath import pi
+from xml.etree.ElementTree import PI
 import matplotlib.pyplot as plt
 import math
 import numpy as np
@@ -13,6 +14,9 @@ def cart2pol(x, y):
     
 def catStypeData(a, b, c):
     return a[0: c + 1] + list(reversed(b[0: c]))
+
+def Convert(lst):
+    return [ -i for i in lst ]
 
 lineStyles = ['-', '--', ':']
 star = 'BaC'
@@ -129,9 +133,9 @@ yOut = [np.sin(a * np.pi / 180) * b for a, b in zip(data['degOut'], data['outer'
 data['degIn'] = list(data['degIn']) + list(reversed([a * (-1) for a in data['degIn'][1: -2]]))
 data['inner'] = list(data['inner']) + list(reversed(data['inner'][1: -2]))
 
-(data['degOut'], data['outer']) = -zip(*[cart2pol(a, b) for a, b in zip(xOut, yOut)])
+(data['degOut'], data['outer']) = zip(*[cart2pol(a, b) for a, b in zip(xOut, yOut)])
 data['degOut'] = list(data['degOut']) + list(reversed([a * (-1) for a in data['degOut'][1: -2]]))
-data['outer']= list(data['outer'])+list(reversed(data['outer'][1: -2])
+data['outer']= list(data['outer'])+list(reversed(data['outer'][1: -2]))
 
 # Plot HZ limits
 cir = np.linspace(0, 2 * np.pi, 181)
@@ -176,7 +180,7 @@ if figureSetting['type'] == 2:
         plt.fill_between(cir, RHZin2 * np.ones(len(cir)), RHZout2 * np.ones(len(cir)), facecolor = '#A3A2A2')
         # Make stars
 
-        plt.polar(0,-(RHZin2+RHZout2)/2, marker='o', markersize=3.5, color = '#A52A2A')
+        plt.polar(pi,(RHZin2+RHZout2)/2, marker='o', markersize=3.5, color = '#A52A2A')
         plt.polar(0,(RHZin1+RHZout1)/2, marker='o', markersize=2, color = '#A52A2A')
 
 
@@ -209,25 +213,9 @@ elif figureSetting['rMax'] <= 3:
 #    legendHandles.append(lin3)
 #    legendLabels.append(figureSetting['legend3'])
 #if len(legendHandles) > 0:
-#    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to_anchor = (0.5, -0.08), ncol = 3)#
+#    plt.legend(legendHandles, legendLabels, loc = 'upper center', bbox_to_anchor = (0.5, -0.08), ncol = 3)
 
 # Save figure 
 plt.tight_layout()
-fig.savefig('dat/'+star+'Result.eps', format='eps')
+#fig.savefig('dat/'+star+'Result.eps', format='eps')
 fig.savefig('dat/'+star+'Result.png')
-if figureSetting['title'] != '':
-    plt.tight_layout()
-    plt.title(figureSetting['title'], pad = 25, fontsize = 15)
-fig.savefig('dat/'+star+'Poster.png')
-
-## Output Plot Data
-#fw = open('dat/'+star+'PolarPLOT.DAT', 'w')
-#wlines = []
-
-#wlines[0] = data['degIn']
-#wlines[1] = data['inner']
-#wlines[2] = data['degOut']
-#wlines[3] = data['outer']
- 
-#fw.writelines(wlines)
-#fw.close()
